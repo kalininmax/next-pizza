@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -6,7 +6,7 @@ interface IProps {
 	className?: string;
 }
 
-export const Container: React.FC<React.PropsWithChildren<IProps>> = ({
+export const Container: FC<PropsWithChildren<IProps>> = ({
 	className,
 	children,
 }) => {

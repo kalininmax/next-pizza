@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { ArrowUpDown } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
@@ -12,7 +12,7 @@ interface IProps {
 	className?: string;
 }
 
-export const SortPopup: React.FC<IProps> = ({ className }) => {
+export const SortPopup: FC<IProps> = ({ className }) => {
 	return (
 		<Popover>
 			<PopoverTrigger asChild>

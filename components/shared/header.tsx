@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import Image from 'next/image';
 import { ArrowRight, ShoppingCart, User } from 'lucide-react';
 
@@ -10,7 +10,7 @@ interface IProps {
 	className?: string;
 }
 
-export const Header: React.FC<IProps> = ({ className }) => {
+export const Header: FC<IProps> = ({ className }) => {
 	return (
 		<header className={cn('border-b border-gray-100', className)}>
 			<Container className="flex items-center justify-between py-8">

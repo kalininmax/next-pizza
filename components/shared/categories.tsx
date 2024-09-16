@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
@@ -19,7 +19,7 @@ const list = [
 ];
 const activeIndex = 0;
 
-export const Categories: React.FC<IProps> = ({ className }) => {
+export const Categories: FC<IProps> = ({ className }) => {
 	return (
 		<div
 			className={cn('inline-flex gap-1 bg-gray-50 p-1 rounded-2xl', className)}

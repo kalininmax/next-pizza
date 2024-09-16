@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { cn } from '@/lib/utils';
 import { Container, Categories, SortPopup } from '@/components/shared';
@@ -7,7 +7,7 @@ interface IProps {
 	className?: string;
 }
 
-export const TopBar: React.FC<IProps> = ({ className }) => {
+export const TopBar: FC<IProps> = ({ className }) => {
 	return (
 		<div
 			className={cn(

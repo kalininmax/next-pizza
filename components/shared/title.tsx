@@ -1,4 +1,4 @@
-import React from 'react';
+import { createElement, FC } from 'react';
 import clsx from 'clsx';
 
 type TitleSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
@@ -9,7 +9,7 @@ interface IProps {
 	text: string;
 }
 
-export const Title: React.FC<IProps> = ({ text, size = 'sm', className }) => {
+export const Title: FC<IProps> = ({ text, size = 'sm', className }) => {
 	const mapTagBySize = {
 		xs: 'h5',
 		sm: 'h4',
@@ -28,7 +28,7 @@ export const Title: React.FC<IProps> = ({ text, size = 'sm', className }) => {
 		'2xl': 'text-[48px]',
 	} as const;
 
-	return React.createElement(
+	return createElement(
 		mapTagBySize[size],
 		{ className: clsx(mapClassNameBySize[size], className) },
 		text
