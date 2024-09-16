@@ -1,4 +1,11 @@
-import { Container, Filters, Title, TopBar } from '@/components/shared';
+import {
+	Container,
+	Filters,
+	ProductsList,
+	Title,
+	TopBar,
+} from '@/components/shared';
+import { PIZZAS } from '@/mocks/products';
 
 export default function Home() {
 	return (
@@ -10,20 +17,11 @@ export default function Home() {
 			<TopBar />
 
 			<Container className="mt-10 pb-14">
-				<div className="flex gap-16 h-min">
+				<div className="flex gap-20 h-min">
 					<Filters className="sticky top-[132px]" />
 
 					<div className="flex-1">
-						<ul className="grid grid-cols-2 gap-4">
-							{[...Array(100)].map((_, i) => (
-								<li
-									key={i}
-									className="flex items-center justify-center p-6 aspect-video shadow-md text-3xl"
-								>
-									Пицца #{i + 1}
-								</li>
-							))}
-						</ul>
+						<ProductsList title="Пиццы" list={PIZZAS} />
 					</div>
 				</div>
 			</Container>
