@@ -13,7 +13,7 @@ interface IProps {
 export const Header: FC<IProps> = ({ className }) => {
 	return (
 		<header className={cn('border-b border-gray-100', className)}>
-			<Container className="flex items-center justify-between py-8">
+			<Container className="flex flex-wrap gap-8 items-center justify-between py-8">
 				<div className="flex items-center gap-4">
 					<Image src="/logo.png" width={35} height={35} alt="Logo" />
 					<div>

@@ -15,7 +15,7 @@ export const TopBar: FC<IProps> = ({ className }) => {
 				className
 			)}
 		>
-			<Container className="flex items-center justify-between ">
+			<Container className="flex gap-4 flex-wrap items-center justify-between ">
 				<Categories />
 				<SortPopup />
 			</Container>

@@ -23,7 +23,15 @@ export const ProductCard: FC<IProduct> = ({
 	return (
 		<article className={className}>
 			<div className="flex justify-center p-6 bg-secondary rounded-lg h-[260px]">
-				{imageUrl && <Image src={imageUrl} alt="" width={215} height={215} />}
+				{imageUrl && (
+					<Image
+						className="object-contain w-[215px] h-[215px]"
+						src={imageUrl}
+						alt=""
+						width={215}
+						height={215}
+					/>
+				)}
 			</div>
 
 			<Link href="/products/1">
