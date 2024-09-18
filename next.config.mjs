@@ -5,8 +5,12 @@ const nextConfig = {
 			{
 				protocol: 'https',
 				hostname: 'media.dodostatic.net',
-				port: '',
 				pathname: '/image/r:292x292/**',
+			},
+			{
+				protocol: 'https',
+				hostname: 'cdn.dodostatic.net',
+				pathname: '/static/Img/Ingredients/**',
 			},
 		],
 	},
