@@ -58,7 +58,6 @@ export const CheckboxFiltersGroup: FC<IProps> = ({
 						key={index}
 						onCheckedChange={(value) => console.log(value)}
 						checked={false}
-						value={item.name}
 						name={item.name}
 						endAdornment={item.endAdornment}
 					/>
