@@ -32,14 +32,8 @@ export const ProductsList: FC<IProps> = ({ id, title, list, className }) => {
 			<Title text={title} size="lg" className="font-extrabold mb-5" />
 
 			<div className="grid grid-cols-[repeat(auto-fit,_minmax(230px,_1fr))] gap-4 lg:gap-8">
-				{list.map((item) => (
-					<ProductCard
-						key={item.id}
-						id={item.id}
-						name={item.name}
-						imageUrl={item.imageUrl}
-						price={item.price}
-					/>
+				{list.map((item, index) => (
+					<ProductCard key={index} name={item.name} imageUrl={item.imageUrl} />
 				))}
 			</div>
 		</div>

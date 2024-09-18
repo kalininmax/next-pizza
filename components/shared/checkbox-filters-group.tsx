@@ -2,13 +2,12 @@
 
 import { ChangeEvent, FC, useState } from 'react';
 
-import { FilterCheckbox, IFilterChecboxProps } from './filter-checkbox';
+import { FilterCheckbox, IFilterCheckboxProps } from './filter-checkbox';
 import { Input } from '../ui/input';
 
 interface IProps {
 	title: string;
-	items: IFilterChecboxProps[];
-	defaultItems?: IFilterChecboxProps[];
+	items: IFilterCheckboxProps[];
 	limit?: number;
 	searchInputPlaceholder?: string;
 	className?: string;
@@ -29,8 +28,8 @@ export const CheckboxFiltersGroup: FC<IProps> = ({
 	const [searchValue, setSearchValue] = useState('');
 
 	const list = showAll
-		? items.filter((item) =>
-				item.text.toLowerCase().includes(searchValue.toLowerCase())
+		? items.filter(({ name }) =>
+				name.toLowerCase().includes(searchValue.toLowerCase())
 		  )
 		: items.slice(0, limit);
 
@@ -59,8 +58,8 @@ export const CheckboxFiltersGroup: FC<IProps> = ({
 						key={index}
 						onCheckedChange={(value) => console.log(value)}
 						checked={false}
-						value={item.value}
-						text={item.text}
+						value={item.name}
+						name={item.name}
 						endAdornment={item.endAdornment}
 					/>
 				))}

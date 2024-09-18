@@ -7,19 +7,12 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export interface IProduct {
-	id: number;
 	name: string;
-	price: number;
 	imageUrl?: string;
 	className?: string;
 }
 
-export const ProductCard: FC<IProduct> = ({
-	name,
-	price,
-	imageUrl,
-	className,
-}) => {
+export const ProductCard: FC<IProduct> = ({ name, imageUrl, className }) => {
 	return (
 		<article className={className}>
 			<div className="flex justify-center p-6 bg-secondary rounded-lg h-[260px]">
@@ -45,7 +38,7 @@ export const ProductCard: FC<IProduct> = ({
 
 			<div className="flex justify-between gap-4 items-center mt-4">
 				<span className="text-[20px]">
-					от <b>{price} ₽</b>
+					от <b>{/*price*/} ₽</b>
 				</span>
 
 				<Button variant="secondary">

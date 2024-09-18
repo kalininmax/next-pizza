@@ -5,20 +5,11 @@ import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 import { useCategoryStore } from '@/store/category';
+import { CATEGORIES } from '@/mocks';
 
 interface IProps {
 	className?: string;
 }
-
-const list = [
-	'Пиццы',
-	'Комбо',
-	'Закуски',
-	'Коктейли',
-	'Кофе',
-	'Напитки',
-	'Десерты',
-];
 
 export const Categories: FC<IProps> = ({ className }) => {
 	const activeId = useCategoryStore((state) => state.activeId);
@@ -26,7 +17,7 @@ export const Categories: FC<IProps> = ({ className }) => {
 	return (
 		<div className={cn('overflow-auto -mx-4 px-4', className)}>
 			<div className={cn('flex gap-1 bg-gray-50 rounded-2xl p-1 w-fit')}>
-				{list.map((name, i) => (
+				{CATEGORIES.map(({ name }, i) => (
 					<Link
 						key={name}
 						className={cn(

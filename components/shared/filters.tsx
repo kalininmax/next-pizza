@@ -7,7 +7,7 @@ import {
 } from '@/components/shared';
 import { Input, RangeSlider } from '../ui';
 
-import { INGREDIENTS } from '@/mocks/filters';
+import { INGREDIENTS } from '@/mocks';
 
 interface IProps {
 	className?: string;
@@ -19,8 +19,8 @@ export const Filters: FC<IProps> = ({ className }) => {
 			<Title text="Фитрация" size="sm" className="mb-5 font-bold" />
 
 			<div className="flex flex-col gap-4">
-				<FilterCheckbox text="Можно собирать" value="1" />
-				<FilterCheckbox text="Новинки" value="2" />
+				<FilterCheckbox name="Можно собирать" />
+				<FilterCheckbox name="Новинки" />
 			</div>
 
 			<div className="mt-5 border-y border-y-neutral-100 py-6 pb-7">

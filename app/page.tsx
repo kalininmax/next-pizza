@@ -5,7 +5,7 @@ import {
 	Title,
 	TopBar,
 } from '@/components/shared';
-import { PIZZAS } from '@/mocks/products';
+import { PIZZAS, PRODUCTS, CATEGORIES } from '@/mocks';
 
 export default function Home() {
 	return (
@@ -19,13 +19,23 @@ export default function Home() {
 				<div className="flex gap-10 lg:gap-20 h-min">
 					<Filters className="hidden md:block sticky top-[132px]" />
 					<div className="grid gap-16 flex-1">
-						<ProductsList id={0} title="Пиццы" list={PIZZAS} />
-						<ProductsList id={1} title="Комбо" list={PIZZAS} />
-						<ProductsList id={2} title="Закуски" list={PIZZAS} />
-						<ProductsList id={3} title="Коктейли" list={PIZZAS} />
-						<ProductsList id={4} title="Кофе" list={PIZZAS} />
-						<ProductsList id={5} title="Напитки" list={PIZZAS} />
-						<ProductsList id={6} title="Десерты" list={PIZZAS} />
+						<ProductsList id={0} title={CATEGORIES[0].name} list={PIZZAS} />
+						{CATEGORIES.map((category, index) => {
+							const list = PRODUCTS.filter(
+								(item) => item.categoryId === index + 1
+							);
+
+							if (!list.length) return null;
+
+							return (
+								<ProductsList
+									key={index}
+									id={index}
+									title={category.name}
+									list={list}
+								/>
+							);
+						})}
 					</div>
 				</div>
 			</Container>
