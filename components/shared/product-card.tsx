@@ -23,6 +23,7 @@ export const ProductCard: FC<IProduct> = ({ name, imageUrl, className }) => {
 						alt=""
 						width={215}
 						height={215}
+						quality={100}
 					/>
 				)}
 			</div>
