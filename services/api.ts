@@ -1,5 +1,5 @@
 import * as products from './products';
-// import * as ingredients from './ingredients';
+import * as ingredients from './ingredients';
 
 export enum ApiRoutes {
 	PRODUCTS = 'products',
@@ -9,5 +9,5 @@ export enum ApiRoutes {
 
 export const Api = {
 	products,
-	// ingredients,
+	ingredients,
 };
