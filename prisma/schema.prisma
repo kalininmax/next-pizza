@@ -50,8 +50,8 @@ model Product {
   name     String @unique
   imageUrl String
 
-  category   Category? @relation(fields: [categoryId], references: [id])
-  categoryId Int?
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
 
   variants ProductVariant[]
 

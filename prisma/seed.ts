@@ -1,15 +1,24 @@
 import { prisma } from './client';
-import { Category, Ingredient, Product, User } from '@prisma/client';
+import { Cart, Category, Ingredient, Prisma, User } from '@prisma/client';
 
-import { USERS, CATEGORIES, INGREDIENTS, PRODUCTS, PIZZAS } from '@/mocks';
+import { generateProductVariants } from '@/lib/utils';
+import {
+	USERS,
+	CATEGORIES,
+	INGREDIENTS,
+	PRODUCTS,
+	CARTS,
+	CART_ITEMS,
+} from '@/mocks';
 
-const generatePizzaVariants = (pizza: { id: number }) => [
-	{ productId: pizza.id, pizzaType: 1, size: 25, price: 500 },
-	{ productId: pizza.id, pizzaType: 1, size: 30, price: 700 },
-	{ productId: pizza.id, pizzaType: 1, size: 35, price: 900 },
-	{ productId: pizza.id, pizzaType: 2, size: 25, price: 500 },
-	{ productId: pizza.id, pizzaType: 2, size: 30, price: 700 },
-	{ productId: pizza.id, pizzaType: 2, size: 35, price: 900 },
+const tables = [
+	'User',
+	'Category',
+	'Ingredient',
+	'Product',
+	'ProductVariant',
+	'Cart',
+	'CartItem',
 ];
 
 const up = async () => {
@@ -25,30 +34,36 @@ const up = async () => {
 		data: INGREDIENTS as Ingredient[],
 	});
 
-	await prisma.product.createMany({
-		data: PRODUCTS as Product[],
-	});
-
 	const variants = await Promise.all(
-		PIZZAS.map(async (pizza) => {
-			const pizzaData = await prisma.product.create({
-				data: pizza,
+		PRODUCTS.map(async (product) => {
+			const productData = await prisma.product.create({
+				data: product,
 			});
 
-			return generatePizzaVariants(pizzaData);
+			return generateProductVariants(productData);
 		})
 	);
 
 	await prisma.productVariant.createMany({
 		data: variants.flat(),
 	});
+
+	await prisma.cart.createMany({
+		data: CARTS as Cart[],
+	});
+
+	CART_ITEMS.forEach(
+		async (item) => await prisma.cartItem.create({ data: item })
+	);
 };
 
 const down = async () => {
-	await prisma.$executeRaw`TRUNCATE TABLE "User" RESTART IDENTITY CASCADE;`;
-	await prisma.$executeRaw`TRUNCATE TABLE "Category" RESTART IDENTITY CASCADE;`;
-	await prisma.$executeRaw`TRUNCATE TABLE "Ingredient" RESTART IDENTITY CASCADE;`;
-	await prisma.$executeRaw`TRUNCATE TABLE "Product" RESTART IDENTITY CASCADE;`;
+	tables.forEach(async (tableName) => {
+		const query = Prisma.raw(
+			`TRUNCATE TABLE "${tableName}" RESTART IDENTITY CASCADE;`
+		);
+		await prisma.$executeRaw`${query}`;
+	});
 };
 
 const main = async () => {
