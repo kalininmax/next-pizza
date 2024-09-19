@@ -6,6 +6,7 @@ import { useIntersection } from 'react-use';
 import { Title } from '@/components/shared';
 import { ProductCard, IProduct } from './product-card';
 import { useCategoryStore } from '@/store/category';
+import { cn } from '@/lib/utils';
 
 interface IProps {
 	id: number;
@@ -28,7 +29,11 @@ export const ProductsList: FC<IProps> = ({ id, title, list, className }) => {
 	}, [intersection, setActiveCategoryId, id]);
 
 	return (
-		<div id={title} className={className} ref={intersectionRef}>
+		<div
+			id={title}
+			className={cn('scroll-mt-[116px]', className)}
+			ref={intersectionRef}
+		>
 			<Title text={title} size="lg" className="font-extrabold mb-5" />
 
 			<div className="grid grid-cols-[repeat(auto-fit,_minmax(230px,_1fr))] gap-4 lg:gap-8">

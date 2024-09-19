@@ -3,8 +3,9 @@ import Image from 'next/image';
 import { ArrowRight, ShoppingCart, User } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
-import { Container } from '@/components/shared';
+import { Container, SearchInput } from '@/components/shared';
 import { Button } from '@/components/ui';
+import Link from 'next/link';
 
 interface IProps {
 	className?: string;
@@ -14,7 +15,7 @@ export const Header: FC<IProps> = ({ className }) => {
 	return (
 		<header className={cn('border-b border-gray-100', className)}>
 			<Container className="flex flex-wrap gap-8 items-center justify-between py-8">
-				<div className="flex items-center gap-4">
+				<Link href="/" className="flex items-center gap-4">
 					<Image
 						src="/logo.png"
 						width={35}
@@ -28,9 +29,11 @@ export const Header: FC<IProps> = ({ className }) => {
 							вкусней уже некуда
 						</p>
 					</div>
-				</div>
+				</Link>
 
-				<div className="mx-10 flex-1">{/* <SearchInput /> */}</div>
+				<div className="flex-1 flex-shrink-0 min-w-60">
+					<SearchInput />
+				</div>
 
 				<div className="flex items-center gap-3">
 					<Button variant="outline" className="flex items-center gap-1">

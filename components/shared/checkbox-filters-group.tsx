@@ -4,6 +4,8 @@ import { ChangeEvent, FC, useState } from 'react';
 
 import { FilterCheckbox, IFilterCheckboxProps } from './filter-checkbox';
 import { Input } from '../ui/input';
+import { Skeleton } from '../ui';
+import { cn } from '../../lib/utils';
 
 interface IProps {
 	title: string;
@@ -11,8 +13,9 @@ interface IProps {
 	limit?: number;
 	searchInputPlaceholder?: string;
 	className?: string;
-	onChange?: (values: string[]) => void;
-	defaultValue?: string[];
+	loading?: boolean;
+	onChange?: (value: string) => void;
+	selected?: Set<string>;
 }
 
 export const CheckboxFiltersGroup: FC<IProps> = ({
@@ -21,8 +24,9 @@ export const CheckboxFiltersGroup: FC<IProps> = ({
 	limit = 5,
 	searchInputPlaceholder = 'Поиск...',
 	className,
-	// onChange,
-	// defaultValue,
+	loading,
+	onChange,
+	selected,
 }) => {
 	const [showAll, setShowAll] = useState(false);
 	const [searchValue, setSearchValue] = useState('');
@@ -37,8 +41,21 @@ export const CheckboxFiltersGroup: FC<IProps> = ({
 		setSearchValue(evt.target.value);
 	};
 
+	if (loading) {
+		return (
+			<div className={cn('w-60', className)}>
+				<p className="font-bold mb-3">{title}</p>
+
+				{Array.from({ length: limit }).map((_, index) => (
+					<Skeleton key={index} className="h-6 mb-4 rounded-[8px]" />
+				))}
+				<Skeleton className="w-28 h-6 rounded-[8px]" />
+			</div>
+		);
+	}
+
 	return (
-		<div className={className}>
+		<div className={cn('w-60', className)}>
 			<p className="font-bold mb-3">{title}</p>
 
 			{showAll && (
@@ -56,9 +73,9 @@ export const CheckboxFiltersGroup: FC<IProps> = ({
 				{list.map((item, index) => (
 					<FilterCheckbox
 						key={index}
-						onCheckedChange={(value) => console.log(value)}
-						checked={false}
 						name={item.name}
+						checked={selected?.has(item.name)}
+						onCheckedChange={(name) => onChange?.(name)}
 						endAdornment={item.endAdornment}
 					/>
 				))}

@@ -23,13 +23,13 @@ export const ProductCard: FC<IProduct> = ({ name, imageUrl, className }) => {
 						alt=""
 						width={215}
 						height={215}
-						quality={100}
+						quality={90}
 					/>
 				)}
 			</div>
 
 			<Link href="/products/1">
-				<Title text={name} size="sm" className="mb-1 mt-3 font-bold" />
+				<Title text={name} size="sm" className="mb-1 mt-3" />
 			</Link>
 
 			<p className="text-sm text-gray-400">

@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import {
 	Container,
 	Filters,
@@ -5,21 +7,23 @@ import {
 	Title,
 	TopBar,
 } from '@/components/shared';
-import { PIZZAS, PRODUCTS, CATEGORIES } from '@/mocks';
 
-export default function Home() {
+import { PRODUCTS, CATEGORIES } from '@/mocks';
+
+export default function HomePage() {
 	return (
 		<>
 			<Container className="mt-5">
-				<Title text="Все пиццы" size="lg" className="font-bold" />
+				<Title text="Все пиццы" size="lg" />
 			</Container>
 
 			<TopBar />
 			<Container className="mt-10 pb-14">
 				<div className="flex gap-10 lg:gap-20 h-min">
-					<Filters className="hidden md:block sticky top-[132px]" />
+					<Suspense>
+						<Filters className="hidden md:block sticky top-[132px]" />
+					</Suspense>
 					<div className="grid gap-16 flex-1">
-						<ProductsList id={0} title={CATEGORIES[0].name} list={PIZZAS} />
 						{CATEGORIES.map((category, index) => {
 							const list = PRODUCTS.filter(
 								(item) => item.categoryId === index + 1

@@ -30,7 +30,7 @@ export const Title: FC<IProps> = ({ text, size = 'sm', className }) => {
 
 	return createElement(
 		mapTagBySize[size],
-		{ className: clsx(mapClassNameBySize[size], className) },
+		{ className: clsx(mapClassNameBySize[size], 'font-bold', className) },
 		text
 	);
 };
