@@ -21,7 +21,7 @@ export const Categories: FC<IProps> = ({ className }) => {
 					<Link
 						key={name}
 						className={cn(
-							'flex whitespace-nowrap items-center font-bold h-11 rounded-2xl px-5 transition-all duration-300',
+							'flex whitespace-nowrap items-center font-bold h-11 rounded-2xl px-5 transition-all duration-300 hover:text-primary hover:transition-none',
 							activeId === i &&
 								'bg-white shadow-md shadow-gray-200 text-primary'
 						)}
