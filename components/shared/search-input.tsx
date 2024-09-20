@@ -90,7 +90,7 @@ export const SearchInput: FC<IProps> = ({ className }) => {
 						{searchResults.map((product) => (
 							<Link
 								key={product.id}
-								className="flex gap-2 items-center px-3 py-2 hover:bg-primary/10"
+								className="flex gap-2 items-center px-3 py-2 transition-colors duration-300 hover:bg-primary/10 hover:transition-none"
 								href={`/products/${product.id}`}
 								onClick={() => setFocused(false)}
 							>
@@ -101,7 +101,7 @@ export const SearchInput: FC<IProps> = ({ className }) => {
 									height={50}
 									alt=""
 								/>
-								{product.name}
+								{product.title}
 							</Link>
 						))}
 					</div>
